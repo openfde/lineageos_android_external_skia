@@ -2007,7 +2007,7 @@ bool GLSLCodeGenerator::generateCode() {
         this->write(String::printf("precision %s float;\n", precision));
         this->write(String::printf("precision %s sampler2D;\n", precision));
         if (fFoundExternalSamplerDecl && !fCaps.fNoDefaultPrecisionForExternalSamplers) {
-            this->write(String::printf("precision %s samplerExternalOES;\n", precision));
+            //this->write(String::printf("precision %s samplerExternalOES;\n", precision));
         }
         if (fFoundRectSamplerDecl) {
             this->write(String::printf("precision %s sampler2DRect;\n", precision));
