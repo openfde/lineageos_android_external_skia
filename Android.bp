@@ -1873,6 +1873,9 @@ cc_library_static {
           "src/text/gpu/VertexFiller.cpp",
           "tools/SkSharingProc.cpp",
         ],
+        static_libs: [
+          "libcutils",
+        ],
         local_include_dirs: [
           "android",
         ],
@@ -3171,6 +3174,7 @@ cc_library_shared {
         "-U_FORTIFY_SOURCE",
         "-DATRACE_TAG=ATRACE_TAG_VIEW",
         "-DSKIA_DLL",
+        "-DNO_EMUGL",
         "-DSKIA_IMPLEMENTATION=1",
         "-D_FORTIFY_SOURCE=1",
         "-Wno-attributes",

@@ -6,6 +6,9 @@
  */
 
 #include "src/sksl/codegen/SkSLGLSLCodeGenerator.h"
+#if !defined(NO_EMUGL)
+#include <cutils/properties.h>
+#endif
 
 #include "include/core/SkSpan.h"
 #include "include/core/SkTypes.h"
@@ -2007,7 +2010,15 @@ bool GLSLCodeGenerator::generateCode() {
         this->write(String::printf("precision %s float;\n", precision));
         this->write(String::printf("precision %s sampler2D;\n", precision));
         if (fFoundExternalSamplerDecl && !fCaps.fNoDefaultPrecisionForExternalSamplers) {
+#if defined(SK_BUILD_FOR_ANDROID) && !defined(NO_EMUGL)
+            char gralloc[92] = {0};
+            property_get("ro.hardware.gralloc", gralloc,"");
+            if (strcmp(gralloc, "ranchu") != 0) {
+                this->write(String::printf("precision %s samplerExternalOES;\n", precision));
+            }
+#else 
             this->write(String::printf("precision %s samplerExternalOES;\n", precision));
+#endif
         }
         if (fFoundRectSamplerDecl) {
             this->write(String::printf("precision %s sampler2DRect;\n", precision));
