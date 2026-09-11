@@ -11,11 +11,14 @@
 
 #include <android/hardware_buffer.h>
 
+#define AHARDWAREBUFFER_FORMAT_B8G8R8A8_UNORM 5
+
 namespace AHardwareBufferUtils {
 
 SkColorType GetSkColorTypeFromBufferFormat(uint32_t bufferFormat) {
     switch (bufferFormat) {
         case AHARDWAREBUFFER_FORMAT_R8G8B8A8_UNORM:
+        case AHARDWAREBUFFER_FORMAT_B8G8R8A8_UNORM:
             return kRGBA_8888_SkColorType;
         case AHARDWAREBUFFER_FORMAT_R8G8B8X8_UNORM:
             return kRGB_888x_SkColorType;

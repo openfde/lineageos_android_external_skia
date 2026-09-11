@@ -28,6 +28,7 @@
 
 #define PROT_CONTENT_EXT_STR "EGL_EXT_protected_content"
 #define EGL_PROTECTED_CONTENT_EXT 0x32C0
+#define AHARDWAREBUFFER_FORMAT_B8G8R8A8_UNORM 5
 
 namespace GrAHardwareBufferUtils {
 
@@ -39,6 +40,7 @@ GrBackendFormat GetGLBackendFormat(GrDirectContext* dContext,
     }
     switch (bufferFormat) {
         case AHARDWAREBUFFER_FORMAT_R8G8B8A8_UNORM:
+        case AHARDWAREBUFFER_FORMAT_B8G8R8A8_UNORM:
             return GrBackendFormats::MakeGL(GR_GL_RGBA8);
         case AHARDWAREBUFFER_FORMAT_R8G8B8X8_UNORM:
             // According to  https://developer.android.com/ndk/reference/group/a-hardware-buffer,
